@@ -1,0 +1,26 @@
+{
+  "name": "gym-progress-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohammedKawaf/Gym-progress-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MohammedKawaf/Gym-progress-tracker/issues"
+  },
+  "homepage": "https://github.com/MohammedKawaf/Gym-progress-tracker#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
