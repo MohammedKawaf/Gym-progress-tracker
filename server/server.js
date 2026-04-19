@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
+const workoutRoutes = require("./routes/workoutRoutes");
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Gym Progress Tracker API is running" });
 });
+
+app.use("/api/workouts", workoutRoutes);
 
 const PORT = process.env.PORT || 5000;
 
