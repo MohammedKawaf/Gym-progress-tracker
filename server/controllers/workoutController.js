@@ -10,6 +10,21 @@ const getWorkouts = async (req, res) => {
   }
 };
 
+const getWorkoutById = async (req, res) => {
+  try {
+    const workout = await Workout.findById(req.params.id);
+
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+
+    res.status(200).json(workout);
+  } catch (error) {
+    console.error("GET /api/workouts/:id error:", error);
+    res.status(500).json({ message: "Failed to fetch workout" });
+  }
+};
+
 const createWorkout = async (req, res) => {
   try {
     const { title, date, durationMinutes, intensityLevel, notes, userId } =
@@ -35,7 +50,28 @@ const createWorkout = async (req, res) => {
   }
 };
 
+const updateWorkout = async (req, res) => {
+  try {
+    const workout = await Workout.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" });
+    }
+
+    res.status(200).json(workout);
+  } catch (error) {
+    console.error("PUT /api/workouts/:id error:", error);
+    res.status(500).json({ message: "Failed to update workout" });
+  }
+};
+
 module.exports = {
   getWorkouts,
+  getWorkoutById,
   createWorkout,
+  updateWorkout,
 };
