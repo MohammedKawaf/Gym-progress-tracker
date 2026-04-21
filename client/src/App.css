@@ -31,3 +31,34 @@ h1 {
 .workout-card h2 {
   margin-top: 0;
 }
+
+.workout-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.workout-form input,
+.workout-form select,
+.workout-form textarea,
+.workout-form button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.workout-form button {
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.workout-form button:hover {
+  opacity: 0.9;
+}

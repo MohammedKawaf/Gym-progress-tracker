@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import WorkoutList from "./components/WorkoutList";
+import WorkoutForm from "./components/WorkoutForm";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
@@ -29,9 +30,14 @@ function App() {
     fetchWorkouts();
   }, []);
 
+  const addWorkoutToList = (newWorkout) => {
+    setWorkouts([...workouts, newWorkout]);
+  };
+
   return (
     <div className="app">
       <Header />
+      <WorkoutForm onAddWorkout={addWorkoutToList} />
 
       {loading && <p>Loading workouts...</p>}
       {error && <p>{error}</p>}
