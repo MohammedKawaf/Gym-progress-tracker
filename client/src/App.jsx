@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Header from "./components/Header";
+import WorkoutList from "./components/WorkoutList";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
@@ -29,25 +31,12 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Gym Progress Tracker</h1>
-      <p>Track your workouts and training progress.</p>
+      <Header />
 
       {loading && <p>Loading workouts...</p>}
       {error && <p>{error}</p>}
 
-      {!loading && !error && (
-        <div className="workout-list">
-          {workouts.map((workout) => (
-            <div key={workout._id} className="workout-card">
-              <h2>{workout.title}</h2>
-              <p>Date: {new Date(workout.date).toLocaleDateString()}</p>
-              <p>Duration: {workout.durationMinutes} minutes</p>
-              <p>Intensity: {workout.intensityLevel}</p>
-              <p>Notes: {workout.notes}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      {!loading && !error && <WorkoutList workouts={workouts} />}
     </div>
   );
 }
