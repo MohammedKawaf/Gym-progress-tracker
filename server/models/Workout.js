@@ -34,7 +34,15 @@ const workoutSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   }
 );
+
+workoutSchema.virtual("exercises", {
+  ref: "Exercise",
+  localField: "_id",
+  foreignField: "workoutId",
+});
 
 module.exports = mongoose.model("Workout", workoutSchema);
