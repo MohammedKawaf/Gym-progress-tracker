@@ -34,6 +34,11 @@ function App() {
     setWorkouts([...workouts, newWorkout]);
   };
 
+  const deleteWorkoutFromList = (id) => {
+    const updatedWorkouts = workouts.filter((workout) => workout._id !== id);
+    setWorkouts(updatedWorkouts);
+  };
+
   return (
     <div className="app">
       <Header />
@@ -42,7 +47,12 @@ function App() {
       {loading && <p>Loading workouts...</p>}
       {error && <p>{error}</p>}
 
-      {!loading && !error && <WorkoutList workouts={workouts} />}
+      {!loading && !error && (
+        <WorkoutList
+          workouts={workouts}
+          onDeleteWorkout={deleteWorkoutFromList}
+        />
+      )}
     </div>
   );
 }
