@@ -39,6 +39,14 @@ function App() {
     setWorkouts(updatedWorkouts);
   };
 
+  const updateWorkoutInList = (updatedWorkout) => {
+    const updatedWorkouts = workouts.map((workout) =>
+      workout._id === updatedWorkout._id ? updatedWorkout : workout
+    );
+
+    setWorkouts(updatedWorkouts);
+  };
+
   return (
     <div className="app">
       <Header />
@@ -51,6 +59,7 @@ function App() {
         <WorkoutList
           workouts={workouts}
           onDeleteWorkout={deleteWorkoutFromList}
+          onUpdateWorkout={updateWorkoutInList}
         />
       )}
     </div>

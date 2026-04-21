@@ -1,6 +1,6 @@
 import WorkoutCard from "./WorkoutCard";
 
-function WorkoutList({ workouts, onDeleteWorkout }) {
+function WorkoutList({ workouts, onDeleteWorkout, onUpdateWorkout }) {
   return (
     <div className="workout-list">
       {workouts.map((workout) => (
@@ -8,6 +8,7 @@ function WorkoutList({ workouts, onDeleteWorkout }) {
           key={workout._id}
           workout={workout}
           onDeleteWorkout={onDeleteWorkout}
+          onUpdateWorkout={onUpdateWorkout}
         />
       ))}
     </div>

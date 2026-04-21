@@ -76,3 +76,64 @@ h1 {
 .delete-button:hover {
   opacity: 0.9;
 }
+
+.edit-button {
+  margin-top: 1rem;
+  margin-right: 0.7rem;
+  background: #1565c0;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  opacity: 0.9;
+}
+
+.button-group {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.save-button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  opacity: 0.9;
+}
+
+.cancel-button {
+  background: #757575;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  opacity: 0.9;
+}
+
+.workout-card input,
+.workout-card select,
+.workout-card textarea {
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
