@@ -1,8 +1,9 @@
 const Workout = require("../models/Workout");
+const User = require("../models/User");
 
 const getWorkouts = async (req, res) => {
   try {
-    const workouts = await Workout.find();
+    const workouts = await Workout.find().populate("userId", "name fitnessGoal");
     res.status(200).json(workouts);
   } catch (error) {
     console.error("GET /api/workouts error:", error);

@@ -135,6 +135,8 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
           <p>Duration: {workout.durationMinutes} minutes</p>
           <p>Intensity: {workout.intensityLevel}</p>
           <p>Notes: {workout.notes}</p>
+          <p>User: {workout.userId?.name || "Unknown user"}</p>
+          <p>Goal: {workout.userId?.fitnessGoal || "No goal"}</p>
 
           <div className="button-group">
             <button className="edit-button" onClick={() => setIsEditing(true)}>
