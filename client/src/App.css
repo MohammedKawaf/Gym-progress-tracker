@@ -186,3 +186,32 @@ h1 {
 .user-details h2 {
   margin-top: 0;
 }
+
+.user-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.user-form input,
+.user-form button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.user-form button {
+  background: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.user-form button:hover {
+  opacity: 0.9;
+}

@@ -5,6 +5,7 @@ import WorkoutList from "./components/WorkoutList";
 import WorkoutForm from "./components/WorkoutForm";
 import UserFilter from "./components/UserFilter";
 import UserDetails from "./components/UserDetails";
+import UserForm from "./components/UserForm";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
@@ -56,6 +57,10 @@ function App() {
     setAllWorkouts(updatedAllWorkouts);
   };
 
+  const addUserToList = (newUser) => {
+    setUsers([...users, newUser]);
+  };
+
   const deleteWorkoutFromList = (id) => {
     const updatedWorkouts = workouts.filter((workout) => workout._id !== id);
     const updatedAllWorkouts = allWorkouts.filter((workout) => workout._id !== id);
@@ -97,6 +102,7 @@ function App() {
   return (
     <div className="app">
       <Header />
+      <UserForm onAddUser={addUserToList} />
       <WorkoutForm onAddWorkout={addWorkoutToList} users={users} />
       <UserFilter
         users={users}
