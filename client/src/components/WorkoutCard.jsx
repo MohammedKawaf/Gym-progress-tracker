@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [showExercises, setShowExercises] = useState(false);
   const [editData, setEditData] = useState({
     title: workout.title,
     durationMinutes: workout.durationMinutes,
@@ -138,22 +139,14 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
           <p>User: {workout.userId?.name || "Unknown user"}</p>
           <p>Goal: {workout.userId?.fitnessGoal || "No goal"}</p>
 
-          {workout.exercises && workout.exercises.length > 0 ? (
-            <div>
-              <h3>Exercises</h3>
-              <ul>
-                {workout.exercises.map((exercise) => (
-                  <li key={exercise._id}>
-                    {exercise.name} - {exercise.sets} sets x {exercise.reps} reps
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <p>No exercises for this workout</p>
-          )}
-
           <div className="button-group">
+            <button
+              className="exercise-button"
+              onClick={() => setShowExercises(!showExercises)}
+            >
+              {showExercises ? "Hide Exercises" : "Show Exercises"}
+            </button>
+
             <button className="edit-button" onClick={() => setIsEditing(true)}>
               Edit
             </button>
@@ -162,6 +155,25 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
               Delete
             </button>
           </div>
+
+          {showExercises && (
+            <>
+              {workout.exercises && workout.exercises.length > 0 ? (
+                <div>
+                  <h3>Exercises</h3>
+                  <ul>
+                    {workout.exercises.map((exercise) => (
+                      <li key={exercise._id}>
+                        {exercise.name} - {exercise.sets} sets x {exercise.reps} reps
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p>No exercises for this workout</p>
+              )}
+            </>
+          )}
         </>
       )}
     </div>
