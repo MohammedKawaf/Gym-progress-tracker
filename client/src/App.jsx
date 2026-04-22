@@ -13,6 +13,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedUserData, setSelectedUserData] = useState(null);
+  const [showUserForm, setShowUserForm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -59,6 +60,7 @@ function App() {
 
   const addUserToList = (newUser) => {
     setUsers([...users, newUser]);
+    setShowUserForm(false);
   };
 
   const deleteWorkoutFromList = (id) => {
@@ -102,13 +104,24 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <UserForm onAddUser={addUserToList} />
+
+      <button
+        className="toggle-user-form-button"
+        onClick={() => setShowUserForm(!showUserForm)}
+      >
+        {showUserForm ? "Hide Add User Form" : "Show Add User Form"}
+      </button>
+
+      {showUserForm && <UserForm onAddUser={addUserToList} />}
+
       <WorkoutForm onAddWorkout={addWorkoutToList} users={users} />
+
       <UserFilter
         users={users}
         selectedUser={selectedUser}
         onUserChange={handleUserChange}
       />
+
       <UserDetails user={selectedUserData} />
 
       {loading && <p>Loading workouts...</p>}
