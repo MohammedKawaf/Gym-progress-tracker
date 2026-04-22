@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config({ path: "./server/.env" });
 
 const User = require("../models/User");
 const Workout = require("../models/Workout");
@@ -19,30 +19,40 @@ const seedData = async () => {
         name: "Sara Lind",
         email: "sara.lind@gmail.com",
         age: 24,
+        heightCm: 168,
+        weightKg: 62,
         fitnessGoal: "Build strength",
       },
       {
         name: "Erik Holm",
         email: "erik.holm@gmail.com",
         age: 28,
+        heightCm: 180,
+        weightKg: 82,
         fitnessGoal: "Increase muscle mass",
       },
       {
         name: "Lina Svensson",
         email: "lina.svensson@gmail.com",
         age: 22,
+        heightCm: 165,
+        weightKg: 58,
         fitnessGoal: "Improve endurance",
       },
       {
         name: "David Karlsson",
         email: "david.karlsson@gmail.com",
         age: 30,
+        heightCm: 185,
+        weightKg: 88,
         fitnessGoal: "Lose body fat",
       },
       {
         name: "Emma Persson",
         email: "emma.persson@gmail.com",
         age: 26,
+        heightCm: 170,
+        weightKg: 64,
         fitnessGoal: "Stay active and healthy",
       },
     ]);

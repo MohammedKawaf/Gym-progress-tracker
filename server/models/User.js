@@ -17,7 +17,17 @@ const userSchema = new mongoose.Schema(
     age: {
       type: Number,
       required: [true, "Age is required"],
-      min: [16, "Age must be at least 16"],
+      min: [1, "Age must be at least 1"],
+    },
+    heightCm: {
+      type: Number,
+      required: [true, "Height is required"],
+      min: [50, "Height must be at least 50 cm"],
+    },
+    weightKg: {
+      type: Number,
+      required: [true, "Weight is required"],
+      min: [20, "Weight must be at least 20 kg"],
     },
     fitnessGoal: {
       type: String,
