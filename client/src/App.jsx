@@ -4,12 +4,14 @@ import Header from "./components/Header";
 import WorkoutList from "./components/WorkoutList";
 import WorkoutForm from "./components/WorkoutForm";
 import UserFilter from "./components/UserFilter";
+import UserDetails from "./components/UserDetails";
 
 function App() {
   const [workouts, setWorkouts] = useState([]);
   const [allWorkouts, setAllWorkouts] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
+  const [selectedUserData, setSelectedUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -72,8 +74,12 @@ function App() {
     setSelectedUser(userId);
 
     if (userId === "") {
+      setSelectedUserData(null);
       setWorkouts(allWorkouts);
     } else {
+      const foundUser = users.find((user) => user._id === userId);
+      setSelectedUserData(foundUser);
+
       const filteredWorkouts = allWorkouts.filter(
         (workout) => workout.userId?._id === userId
       );
@@ -90,6 +96,7 @@ function App() {
         selectedUser={selectedUser}
         onUserChange={handleUserChange}
       />
+      <UserDetails user={selectedUserData} />
 
       {loading && <p>Loading workouts...</p>}
       {error && <p>{error}</p>}
