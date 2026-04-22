@@ -42,8 +42,15 @@ function App() {
   }, []);
 
   const addWorkoutToList = (newWorkout) => {
-    const updatedWorkouts = [...workouts, newWorkout];
-    const updatedAllWorkouts = [...allWorkouts, newWorkout];
+    const selectedUserObject = users.find((user) => user._id === newWorkout.userId);
+
+    const workoutWithUser = {
+      ...newWorkout,
+      userId: selectedUserObject || newWorkout.userId,
+    };
+
+    const updatedWorkouts = [...workouts, workoutWithUser];
+    const updatedAllWorkouts = [...allWorkouts, workoutWithUser];
 
     setWorkouts(updatedWorkouts);
     setAllWorkouts(updatedAllWorkouts);
@@ -90,7 +97,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <WorkoutForm onAddWorkout={addWorkoutToList} />
+      <WorkoutForm onAddWorkout={addWorkoutToList} users={users} />
       <UserFilter
         users={users}
         selectedUser={selectedUser}

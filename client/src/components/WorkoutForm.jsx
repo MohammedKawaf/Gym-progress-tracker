@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function WorkoutForm({ onAddWorkout }) {
+function WorkoutForm({ onAddWorkout, users }) {
   const [formData, setFormData] = useState({
+    userId: "",
     title: "",
     date: "",
     durationMinutes: "",
     intensityLevel: "Medium",
     notes: "",
-    userId: "69e4c9fac14c0efcad227e77",
   });
 
   const handleChange = (event) => {
@@ -42,12 +42,12 @@ function WorkoutForm({ onAddWorkout }) {
       onAddWorkout(newWorkout);
 
       setFormData({
+        userId: "",
         title: "",
         date: "",
         durationMinutes: "",
         intensityLevel: "Medium",
         notes: "",
-        userId: "69e4c9fac14c0efcad227e77",
       });
     } catch (error) {
       console.error("POST /api/workouts error:", error);
@@ -57,6 +57,20 @@ function WorkoutForm({ onAddWorkout }) {
   return (
     <form className="workout-form" onSubmit={handleSubmit}>
       <h2>Add Workout</h2>
+
+      <select
+        name="userId"
+        value={formData.userId}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Choose user</option>
+        {users.map((user) => (
+          <option key={user._id} value={user._id}>
+            {user.name}
+          </option>
+        ))}
+      </select>
 
       <input
         type="text"
