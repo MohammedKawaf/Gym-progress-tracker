@@ -11,6 +11,31 @@ const getExercisesByWorkoutId = async (req, res) => {
   }
 };
 
+const createExercise = async (req, res) => {
+  try {
+    const { name, sets, reps, weightKg, muscleGroup } = req.body;
+
+    if (!name || !sets || !reps || weightKg === undefined || !muscleGroup) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    const exercise = await Exercise.create({
+      name,
+      sets: Number(sets),
+      reps: Number(reps),
+      weightKg: Number(weightKg),
+      muscleGroup,
+      workoutId: req.params.id,
+    });
+
+    res.status(201).json(exercise);
+  } catch (error) {
+    console.error("POST /api/workouts/:id/exercises error:", error);
+    res.status(500).json({ message: "Failed to create exercise" });
+  }
+};
+
 module.exports = {
   getExercisesByWorkoutId,
+  createExercise,
 };

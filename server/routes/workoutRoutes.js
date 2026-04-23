@@ -11,11 +11,15 @@ const {
 
 const {
   getExercisesByWorkoutId,
+  createExercise,
 } = require("../controllers/exerciseController");
 
 router.get("/", getWorkouts);
 router.get("/:id", getWorkoutById);
+
 router.get("/:id/exercises", getExercisesByWorkoutId);
+router.post("/:id/exercises", createExercise);
+
 router.post("/", createWorkout);
 router.put("/:id", updateWorkout);
 router.delete("/:id", deleteWorkout);

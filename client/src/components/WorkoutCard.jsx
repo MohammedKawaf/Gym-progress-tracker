@@ -3,11 +3,21 @@ import { useState } from "react";
 function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showExercises, setShowExercises] = useState(false);
+  const [showExerciseForm, setShowExerciseForm] = useState(false);
+
   const [editData, setEditData] = useState({
     title: workout.title,
     durationMinutes: workout.durationMinutes,
     intensityLevel: workout.intensityLevel,
     notes: workout.notes || "",
+  });
+
+  const [exerciseData, setExerciseData] = useState({
+    name: "",
+    sets: "",
+    reps: "",
+    weightKg: "",
+    muscleGroup: "",
   });
 
   const handleDelete = async () => {
@@ -69,7 +79,14 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
       }
 
       const updatedWorkout = await response.json();
-      onUpdateWorkout(updatedWorkout);
+
+      const workoutWithExtras = {
+        ...updatedWorkout,
+        userId: workout.userId,
+        exercises: workout.exercises || [],
+      };
+
+      onUpdateWorkout(workoutWithExtras);
       setIsEditing(false);
     } catch (error) {
       console.error("PUT workout error:", error);
@@ -84,6 +101,63 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
       notes: workout.notes || "",
     });
     setIsEditing(false);
+  };
+
+  const handleExerciseChange = (event) => {
+    const { name, value } = event.target;
+
+    setExerciseData({
+      ...exerciseData,
+      [name]: value,
+    });
+  };
+
+  const handleAddExercise = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/workouts/${workout._id}/exercises`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...exerciseData,
+            sets: Number(exerciseData.sets),
+            reps: Number(exerciseData.reps),
+            weightKg: Number(exerciseData.weightKg),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to create exercise");
+      }
+
+      const newExercise = await response.json();
+
+      const updatedWorkout = {
+        ...workout,
+        exercises: [...(workout.exercises || []), newExercise],
+      };
+
+      onUpdateWorkout(updatedWorkout);
+
+      setExerciseData({
+        name: "",
+        sets: "",
+        reps: "",
+        weightKg: "",
+        muscleGroup: "",
+      });
+
+      setShowExerciseForm(false);
+      setShowExercises(true);
+    } catch (error) {
+      console.error("POST exercise error:", error);
+    }
   };
 
   return (
@@ -147,6 +221,13 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
               {showExercises ? "Hide Exercises" : "Show Exercises"}
             </button>
 
+            <button
+              className="add-exercise-button"
+              onClick={() => setShowExerciseForm(!showExerciseForm)}
+            >
+              {showExerciseForm ? "Hide Add Exercise" : "Add Exercise"}
+            </button>
+
             <button className="edit-button" onClick={() => setIsEditing(true)}>
               Edit
             </button>
@@ -155,6 +236,59 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
               Delete
             </button>
           </div>
+
+          {showExerciseForm && (
+            <form className="exercise-form" onSubmit={handleAddExercise}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Exercise name"
+                value={exerciseData.name}
+                onChange={handleExerciseChange}
+                required
+              />
+
+              <input
+                type="number"
+                name="sets"
+                placeholder="Sets"
+                value={exerciseData.sets}
+                onChange={handleExerciseChange}
+                required
+              />
+
+              <input
+                type="number"
+                name="reps"
+                placeholder="Reps"
+                value={exerciseData.reps}
+                onChange={handleExerciseChange}
+                required
+              />
+
+              <input
+                type="number"
+                name="weightKg"
+                placeholder="Weight in kg"
+                value={exerciseData.weightKg}
+                onChange={handleExerciseChange}
+                required
+              />
+
+              <input
+                type="text"
+                name="muscleGroup"
+                placeholder="Muscle group"
+                value={exerciseData.muscleGroup}
+                onChange={handleExerciseChange}
+                required
+              />
+
+              <button type="submit" className="save-button">
+                Save Exercise
+              </button>
+            </form>
+          )}
 
           {showExercises && (
             <>

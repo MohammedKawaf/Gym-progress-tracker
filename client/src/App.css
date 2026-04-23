@@ -339,3 +339,31 @@ h1 {
 .confirm-delete-button:hover {
   opacity: 0.9;
 }
+
+.add-exercise-button {
+  margin-top: 1rem;
+  background: #6a1b9a;
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.add-exercise-button:hover {
+  opacity: 0.9;
+}
+
+.exercise-form {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.exercise-form input,
+.exercise-form button {
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
