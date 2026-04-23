@@ -69,6 +69,24 @@ function App() {
     }, 3000);
   };
 
+  const deleteUserFromList = (userId) => {
+    const updatedUsers = users.filter((user) => user._id !== userId);
+
+    const updatedWorkouts = workouts.filter(
+      (workout) => workout.userId?._id !== userId
+    );
+
+    const updatedAllWorkouts = allWorkouts.filter(
+      (workout) => workout.userId?._id !== userId
+    );
+
+    setUsers(updatedUsers);
+    setWorkouts(updatedWorkouts);
+    setAllWorkouts(updatedAllWorkouts);
+    setSelectedUser("");
+    setSelectedUserData(null);
+  };
+
   const deleteWorkoutFromList = (id) => {
     const updatedWorkouts = workouts.filter((workout) => workout._id !== id);
     const updatedAllWorkouts = allWorkouts.filter((workout) => workout._id !== id);
@@ -117,7 +135,12 @@ function App() {
         onUserChange={handleUserChange}
       />
 
-      {selectedUserData && <UserDetails user={selectedUserData} />}
+      {selectedUserData && (
+        <UserDetails
+          user={selectedUserData}
+          onDeleteUser={deleteUserFromList}
+        />
+      )}
 
       <button
         className="toggle-user-form-button"

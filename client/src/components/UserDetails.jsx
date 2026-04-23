@@ -1,7 +1,31 @@
-function UserDetails({ user }) {
+function UserDetails({ user, onDeleteUser }) {
   if (!user) {
     return null;
   }
+
+  const handleDeleteUser = async () => {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete ${user.name} and all related workouts?`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/users/${user._id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      onDeleteUser(user._id);
+    } catch (error) {
+      console.error("DELETE /api/users/:id error:", error);
+    }
+  };
 
   return (
     <div className="user-details">
@@ -11,6 +35,10 @@ function UserDetails({ user }) {
       <p>Height: {user.heightCm} cm</p>
       <p>Weight: {user.weightKg} kg</p>
       <p>Goal: {user.fitnessGoal}</p>
+
+      <button className="delete-user-button" onClick={handleDeleteUser}>
+        Delete User
+      </button>
     </div>
   );
 }

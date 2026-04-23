@@ -264,3 +264,17 @@ h1 {
   text-align: center;
   margin: 0 0 1rem 0;
 }
+
+.delete-user-button {
+  margin-top: 1rem;
+  background: #b71c1c;
+  color: white;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete-user-button:hover {
+  opacity: 0.9;
+}
