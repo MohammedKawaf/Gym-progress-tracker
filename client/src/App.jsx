@@ -105,6 +105,14 @@ function App() {
     <div className="app">
       <Header />
 
+      <UserFilter
+        users={users}
+        selectedUser={selectedUser}
+        onUserChange={handleUserChange}
+      />
+
+      {selectedUserData && <UserDetails user={selectedUserData} />}
+
       <button
         className="toggle-user-form-button"
         onClick={() => setShowUserForm(!showUserForm)}
@@ -115,14 +123,6 @@ function App() {
       {showUserForm && <UserForm onAddUser={addUserToList} />}
 
       <WorkoutForm onAddWorkout={addWorkoutToList} users={users} />
-
-      <UserFilter
-        users={users}
-        selectedUser={selectedUser}
-        onUserChange={handleUserChange}
-      />
-
-      <UserDetails user={selectedUserData} />
 
       {loading && <p>Loading workouts...</p>}
       {error && <p>{error}</p>}
