@@ -160,6 +160,32 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
     }
   };
 
+  const handleDeleteExercise = async (exerciseId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/workouts/${workout._id}/exercises/${exerciseId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete exercise");
+      }
+
+      const updatedWorkout = {
+        ...workout,
+        exercises: (workout.exercises || []).filter(
+          (exercise) => exercise._id !== exerciseId
+        ),
+      };
+
+      onUpdateWorkout(updatedWorkout);
+    } catch (error) {
+      console.error("DELETE exercise error:", error);
+    }
+  };
+
   return (
     <div className="workout-card">
       {isEditing ? (
@@ -295,10 +321,18 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
               {workout.exercises && workout.exercises.length > 0 ? (
                 <div>
                   <h3>Exercises</h3>
-                  <ul>
+                  <ul className="exercise-list">
                     {workout.exercises.map((exercise) => (
-                      <li key={exercise._id}>
-                        {exercise.name} - {exercise.sets} sets x {exercise.reps} reps
+                      <li key={exercise._id} className="exercise-item">
+                        <span>
+                          {exercise.name} - {exercise.sets} sets x {exercise.reps} reps
+                        </span>
+                        <button
+                          className="delete-exercise-button"
+                          onClick={() => handleDeleteExercise(exercise._id)}
+                        >
+                          Delete
+                        </button>
                       </li>
                     ))}
                   </ul>

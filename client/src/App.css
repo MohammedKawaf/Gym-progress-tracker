@@ -367,3 +367,32 @@ h1 {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+
+.exercise-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.delete-exercise-button {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.delete-exercise-button:hover {
+  opacity: 0.9;
+}

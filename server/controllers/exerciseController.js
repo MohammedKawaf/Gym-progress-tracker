@@ -35,7 +35,23 @@ const createExercise = async (req, res) => {
   }
 };
 
+const deleteExercise = async (req, res) => {
+  try {
+    const exercise = await Exercise.findByIdAndDelete(req.params.exerciseId);
+
+    if (!exercise) {
+      return res.status(404).json({ message: "Exercise not found" });
+    }
+
+    res.status(200).json({ message: "Exercise deleted" });
+  } catch (error) {
+    console.error("DELETE /api/workouts/:id/exercises/:exerciseId error:", error);
+    res.status(500).json({ message: "Failed to delete exercise" });
+  }
+};
+
 module.exports = {
   getExercisesByWorkoutId,
   createExercise,
+  deleteExercise,
 };
