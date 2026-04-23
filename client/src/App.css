@@ -278,3 +278,64 @@ h1 {
 .delete-user-button:hover {
   opacity: 0.9;
 }
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.popup-box h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.popup-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cancel-popup-button {
+  background: #757575;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-popup-button:hover {
+  opacity: 0.9;
+}
+
+.confirm-delete-button {
+  background: #b71c1c;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.confirm-delete-button:hover {
+  opacity: 0.9;
+}
