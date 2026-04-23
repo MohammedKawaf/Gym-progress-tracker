@@ -246,3 +246,21 @@ h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
+
+.success-message {
+  background: #dff0d8;
+  color: #2e7d32;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.error-message {
+  background: #fdecea;
+  color: #c62828;
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 0 1rem 0;
+}

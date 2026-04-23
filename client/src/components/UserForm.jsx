@@ -10,6 +10,8 @@ function UserForm({ onAddUser }) {
     fitnessGoal: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -23,6 +25,8 @@ function UserForm({ onAddUser }) {
     event.preventDefault();
 
     try {
+      setErrorMessage("");
+
       const response = await fetch("http://localhost:5000/api/users", {
         method: "POST",
         headers: {
@@ -48,12 +52,15 @@ function UserForm({ onAddUser }) {
       });
     } catch (error) {
       console.error("POST /api/users error:", error);
+      setErrorMessage("Could not create user");
     }
   };
 
   return (
     <form className="user-form" onSubmit={handleSubmit}>
       <h2>Add User</h2>
+
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <input
         type="text"

@@ -14,6 +14,7 @@ function App() {
   const [selectedUser, setSelectedUser] = useState("");
   const [selectedUserData, setSelectedUserData] = useState(null);
   const [showUserForm, setShowUserForm] = useState(false);
+  const [userSuccessMessage, setUserSuccessMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -61,6 +62,11 @@ function App() {
   const addUserToList = (newUser) => {
     setUsers([...users, newUser]);
     setShowUserForm(false);
+    setUserSuccessMessage("User added successfully");
+
+    setTimeout(() => {
+      setUserSuccessMessage("");
+    }, 3000);
   };
 
   const deleteWorkoutFromList = (id) => {
@@ -119,6 +125,10 @@ function App() {
       >
         {showUserForm ? "Hide Add User Form" : "Show Add User Form"}
       </button>
+
+      {userSuccessMessage && (
+        <p className="success-message">{userSuccessMessage}</p>
+      )}
 
       {showUserForm && <UserForm onAddUser={addUserToList} />}
 
