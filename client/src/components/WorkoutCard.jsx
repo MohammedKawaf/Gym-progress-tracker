@@ -16,8 +16,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
     name: "",
     sets: "",
     reps: "",
-    weightKg: "",
-    muscleGroup: "",
   });
 
   const handleDelete = async () => {
@@ -124,10 +122,9 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            ...exerciseData,
+            name: exerciseData.name,
             sets: Number(exerciseData.sets),
             reps: Number(exerciseData.reps),
-            weightKg: Number(exerciseData.weightKg),
           }),
         }
       );
@@ -149,8 +146,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
         name: "",
         sets: "",
         reps: "",
-        weightKg: "",
-        muscleGroup: "",
       });
 
       setShowExerciseForm(false);
@@ -288,24 +283,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
                 name="reps"
                 placeholder="Reps"
                 value={exerciseData.reps}
-                onChange={handleExerciseChange}
-                required
-              />
-
-              <input
-                type="number"
-                name="weightKg"
-                placeholder="Weight in kg"
-                value={exerciseData.weightKg}
-                onChange={handleExerciseChange}
-                required
-              />
-
-              <input
-                type="text"
-                name="muscleGroup"
-                placeholder="Muscle group"
-                value={exerciseData.muscleGroup}
                 onChange={handleExerciseChange}
                 required
               />

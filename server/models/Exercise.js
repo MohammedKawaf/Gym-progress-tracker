@@ -17,16 +17,6 @@ const exerciseSchema = new mongoose.Schema(
       required: [true, "Reps are required"],
       min: [1, "Reps must be at least 1"],
     },
-    weightKg: {
-      type: Number,
-      required: [true, "Weight is required"],
-      min: [0, "Weight cannot be negative"],
-    },
-    muscleGroup: {
-      type: String,
-      required: [true, "Muscle group is required"],
-      trim: true,
-    },
     workoutId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Workout",

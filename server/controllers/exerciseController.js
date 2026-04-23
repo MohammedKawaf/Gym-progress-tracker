@@ -13,9 +13,9 @@ const getExercisesByWorkoutId = async (req, res) => {
 
 const createExercise = async (req, res) => {
   try {
-    const { name, sets, reps, weightKg, muscleGroup } = req.body;
+    const { name, sets, reps } = req.body;
 
-    if (!name || !sets || !reps || weightKg === undefined || !muscleGroup) {
+    if (!name || !sets || !reps) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -23,8 +23,6 @@ const createExercise = async (req, res) => {
       name,
       sets: Number(sets),
       reps: Number(reps),
-      weightKg: Number(weightKg),
-      muscleGroup,
       workoutId: req.params.id,
     });
 
