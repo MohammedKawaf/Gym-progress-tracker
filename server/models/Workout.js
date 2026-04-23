@@ -21,11 +21,6 @@ const workoutSchema = new mongoose.Schema(
       required: [true, "Intensity level is required"],
       enum: ["Low", "Medium", "High"],
     },
-    notes: {
-      type: String,
-      trim: true,
-      default: "",
-    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

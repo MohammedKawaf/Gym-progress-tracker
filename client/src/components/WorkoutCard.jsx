@@ -9,7 +9,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
     title: workout.title,
     durationMinutes: workout.durationMinutes,
     intensityLevel: workout.intensityLevel,
-    notes: workout.notes || "",
   });
 
   const [exerciseData, setExerciseData] = useState({
@@ -67,7 +66,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
             title: editData.title,
             durationMinutes: Number(editData.durationMinutes),
             intensityLevel: editData.intensityLevel,
-            notes: editData.notes,
           }),
         }
       );
@@ -96,7 +94,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
       title: workout.title,
       durationMinutes: workout.durationMinutes,
       intensityLevel: workout.intensityLevel,
-      notes: workout.notes || "",
     });
     setIsEditing(false);
   };
@@ -209,12 +206,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
             <option value="High">High</option>
           </select>
 
-          <textarea
-            name="notes"
-            value={editData.notes}
-            onChange={handleEditChange}
-          />
-
           <div className="button-group">
             <button className="save-button" onClick={handleSave}>
               Save
@@ -230,7 +221,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
           <p>Date: {new Date(workout.date).toLocaleDateString()}</p>
           <p>Duration: {workout.durationMinutes} minutes</p>
           <p>Intensity: {workout.intensityLevel}</p>
-          <p>Notes: {workout.notes}</p>
           <p>User: {workout.userId?.name || "Unknown user"}</p>
           <p>Goal: {workout.userId?.fitnessGoal || "No goal"}</p>
 

@@ -6,7 +6,7 @@ const getWorkouts = async (req, res) => {
   try {
     const workouts = await Workout.find()
       .populate("userId", "name fitnessGoal")
-      .populate("exercises", "name sets reps weightKg muscleGroup");
+      .populate("exercises", "name sets reps");
 
     res.status(200).json(workouts);
   } catch (error) {
@@ -32,8 +32,7 @@ const getWorkoutById = async (req, res) => {
 
 const createWorkout = async (req, res) => {
   try {
-    const { title, date, durationMinutes, intensityLevel, notes, userId } =
-      req.body;
+    const { title, date, durationMinutes, intensityLevel, userId } = req.body;
 
     if (!title || !date || !durationMinutes || !intensityLevel || !userId) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -44,7 +43,6 @@ const createWorkout = async (req, res) => {
       date,
       durationMinutes,
       intensityLevel,
-      notes,
       userId,
     });
 
@@ -57,11 +55,9 @@ const createWorkout = async (req, res) => {
 
 const updateWorkout = async (req, res) => {
   try {
-    const workout = await Workout.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const workout = await Workout.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
     if (!workout) {
       return res.status(404).json({ message: "Workout not found" });

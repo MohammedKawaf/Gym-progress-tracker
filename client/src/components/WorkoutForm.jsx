@@ -7,7 +7,6 @@ function WorkoutForm({ onAddWorkout, users }) {
     date: "",
     durationMinutes: "",
     intensityLevel: "Medium",
-    notes: "",
   });
 
   const handleChange = (event) => {
@@ -47,7 +46,6 @@ function WorkoutForm({ onAddWorkout, users }) {
         date: "",
         durationMinutes: "",
         intensityLevel: "Medium",
-        notes: "",
       });
     } catch (error) {
       console.error("POST /api/workouts error:", error);
@@ -107,13 +105,6 @@ function WorkoutForm({ onAddWorkout, users }) {
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-
-      <textarea
-        name="notes"
-        placeholder="Notes"
-        value={formData.notes}
-        onChange={handleChange}
-      />
 
       <button type="submit">Add Workout</button>
     </form>
