@@ -6,7 +6,6 @@ function WorkoutForm({ onAddWorkout, users }) {
     title: "",
     date: "",
     durationMinutes: "",
-    intensityLevel: "Medium",
   });
 
   const handleChange = (event) => {
@@ -45,7 +44,6 @@ function WorkoutForm({ onAddWorkout, users }) {
         title: "",
         date: "",
         durationMinutes: "",
-        intensityLevel: "Medium",
       });
     } catch (error) {
       console.error("POST /api/workouts error:", error);
@@ -95,16 +93,6 @@ function WorkoutForm({ onAddWorkout, users }) {
         onChange={handleChange}
         required
       />
-
-      <select
-        name="intensityLevel"
-        value={formData.intensityLevel}
-        onChange={handleChange}
-      >
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
 
       <button type="submit">Add Workout</button>
     </form>

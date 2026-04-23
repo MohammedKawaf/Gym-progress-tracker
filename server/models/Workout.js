@@ -16,11 +16,6 @@ const workoutSchema = new mongoose.Schema(
       required: [true, "Duration is required"],
       min: [1, "Duration must be at least 1 minute"],
     },
-    intensityLevel: {
-      type: String,
-      required: [true, "Intensity level is required"],
-      enum: ["Low", "Medium", "High"],
-    },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

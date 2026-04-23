@@ -8,7 +8,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
   const [editData, setEditData] = useState({
     title: workout.title,
     durationMinutes: workout.durationMinutes,
-    intensityLevel: workout.intensityLevel,
   });
 
   const [exerciseData, setExerciseData] = useState({
@@ -65,7 +64,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
           body: JSON.stringify({
             title: editData.title,
             durationMinutes: Number(editData.durationMinutes),
-            intensityLevel: editData.intensityLevel,
           }),
         }
       );
@@ -93,7 +91,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
     setEditData({
       title: workout.title,
       durationMinutes: workout.durationMinutes,
-      intensityLevel: workout.intensityLevel,
     });
     setIsEditing(false);
   };
@@ -196,16 +193,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
             onChange={handleEditChange}
           />
 
-          <select
-            name="intensityLevel"
-            value={editData.intensityLevel}
-            onChange={handleEditChange}
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-
           <div className="button-group">
             <button className="save-button" onClick={handleSave}>
               Save
@@ -220,7 +207,6 @@ function WorkoutCard({ workout, onDeleteWorkout, onUpdateWorkout }) {
           <h2>{workout.title}</h2>
           <p>Date: {new Date(workout.date).toLocaleDateString()}</p>
           <p>Duration: {workout.durationMinutes} minutes</p>
-          <p>Intensity: {workout.intensityLevel}</p>
           <p>User: {workout.userId?.name || "Unknown user"}</p>
           <p>Goal: {workout.userId?.fitnessGoal || "No goal"}</p>
 

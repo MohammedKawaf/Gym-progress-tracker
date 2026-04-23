@@ -32,9 +32,9 @@ const getWorkoutById = async (req, res) => {
 
 const createWorkout = async (req, res) => {
   try {
-    const { title, date, durationMinutes, intensityLevel, userId } = req.body;
+    const { title, date, durationMinutes, userId } = req.body;
 
-    if (!title || !date || !durationMinutes || !intensityLevel || !userId) {
+    if (!title || !date || !durationMinutes || !userId) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
@@ -42,7 +42,6 @@ const createWorkout = async (req, res) => {
       title,
       date,
       durationMinutes,
-      intensityLevel,
       userId,
     });
 
