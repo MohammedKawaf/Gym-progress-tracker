@@ -232,3 +232,17 @@ h1 {
 .toggle-user-form-button:hover {
   opacity: 0.9;
 }
+
+.empty-state {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.empty-state h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
