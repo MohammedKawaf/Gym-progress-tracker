@@ -65,6 +65,12 @@ MONGO_URI=your_mongodb_connection_string
 PORT=5000
 ```
 
+# MongoDB Atlas
+
+This project uses MongoDB Atlas as cloud database.
+
+Create a free MongoDB Atlas account, create a cluster, and add your connection string to the `.env` file.
+
 ## Run project
 
 ```bash
@@ -104,27 +110,6 @@ http://localhost:5000
 - POST /api/workouts/:id/exercises
 - DELETE /api/workouts/:id/exercises/:exerciseId
 
-## Stats
-- GET /api/stats/total-reps
-
----
-
-# Project Structure
-
-```text
-client/
-  src/
-    components/
-    App.jsx
-    App.css
-
-server/
-  controllers/
-  models/
-  routes/
-  config/
-  server.js
-```
 
 ---
 
