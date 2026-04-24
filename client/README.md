@@ -1,16 +1,143 @@
-# React + Vite
+# Gym Progress Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application for managing gym users, workouts, and exercises.
 
-Currently, two official plugins are available:
+Users can create profiles, add workouts, connect workouts to users, and manage exercises inside each workout.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Create, view and delete users
+- Create, edit and delete workouts
+- Filter workouts by selected user
+- Show user details
+- Add exercises to workouts
+- Delete exercises
+- Responsive and clean UI
+- Connected MongoDB database
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Tech Stack
+
+## Frontend
+- React
+- Vite
+- CSS
+
+## Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+
+## Tools
+- Postman
+- Git & GitHub
+
+---
+
+# Installation
+
+## Clone project
+
+```bash
+git clone https://github.com/MohammedKawaf/Gym-progress-tracker.git
+cd Gym-progress-tracker
+```
+
+## Install dependencies
+
+```bash
+npm install
+cd client
+npm install
+cd ..
+```
+
+## Add environment variables
+
+Create a `.env` file inside `/server`
+
+```env
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
+```
+
+## Run project
+
+```bash
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+Backend runs on:
+
+```text
+http://localhost:5000
+```
+
+---
+
+# API Routes
+
+## Users
+- GET /api/users
+- POST /api/users
+- DELETE /api/users/:id
+
+## Workouts
+- GET /api/workouts
+- GET /api/workouts/:id
+- POST /api/workouts
+- PUT /api/workouts/:id
+- DELETE /api/workouts/:id
+
+## Exercises
+- GET /api/workouts/:id/exercises
+- POST /api/workouts/:id/exercises
+- DELETE /api/workouts/:id/exercises/:exerciseId
+
+## Stats
+- GET /api/stats/total-reps
+
+---
+
+# Project Structure
+
+```text
+client/
+  src/
+    components/
+    App.jsx
+    App.css
+
+server/
+  controllers/
+  models/
+  routes/
+  config/
+  server.js
+```
+
+---
+
+# Future Improvements
+
+- Edit users
+- Search function
+- Better statistics dashboard
+- Authentication
+- Dark mode
+
+---
+
+# Author
+
+Created as a school project using React, Node.js, Express and MongoDB.
