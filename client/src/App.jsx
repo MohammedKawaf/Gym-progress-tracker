@@ -31,9 +31,23 @@ function App() {
         const workoutsData = await workoutsResponse.json();
         const usersData = await usersResponse.json();
 
-        setWorkouts(workoutsData);
         setAllWorkouts(workoutsData);
         setUsers(usersData);
+        setError("");
+
+        if (selectedUser === "") {
+          setWorkouts(workoutsData);
+          setSelectedUserData(null);
+        } else {
+          const foundUser = usersData.find((user) => user._id === selectedUser);
+          setSelectedUserData(foundUser || null);
+
+          const filteredWorkouts = workoutsData.filter(
+            (workout) => workout.userId?._id === selectedUser
+          );
+
+          setWorkouts(filteredWorkouts);
+        }
       } catch (error) {
         setError("Could not load data");
       } finally {
@@ -42,7 +56,13 @@ function App() {
     };
 
     fetchData();
-  }, []);
+
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 10000);
+
+    return () => clearInterval(intervalId);
+  }, [selectedUser]);
 
   const addWorkoutToList = (newWorkout) => {
     const selectedUserObject = users.find((user) => user._id === newWorkout.userId);
@@ -52,11 +72,13 @@ function App() {
       userId: selectedUserObject || newWorkout.userId,
     };
 
-    const updatedWorkouts = [...workouts, workoutWithUser];
     const updatedAllWorkouts = [...allWorkouts, workoutWithUser];
 
-    setWorkouts(updatedWorkouts);
     setAllWorkouts(updatedAllWorkouts);
+
+    if (selectedUser === "" || selectedUser === newWorkout.userId) {
+      setWorkouts([...workouts, workoutWithUser]);
+    }
   };
 
   const addUserToList = (newUser) => {
